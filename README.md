@@ -1,4 +1,4 @@
-# BR CAR LIFE | Site oficial (CROW77 Projects)
+# BR CAR LIFE | Site oficial (CROW77)
 
 Site estático (HTML, CSS e JS puros), sem build e sem dependências.
 
@@ -21,7 +21,5 @@ Site estático (HTML, CSS e JS puros), sem build e sem dependências.
 
 ## Visual (v3)
 - `assets/img/`: logos e peças do Gol GTI já otimizados (WebP). O carro é composto de `gol.webp` + `gol_n.webp` (normal map) e iluminado em WebGL.
-- Foto de fundo: coloque a imagem em `assets/img/fundo.jpg` e defina `--foto:url(img/fundo.jpg)` em `:root` no `style.css`. Ela vira o fundo de todas as páginas, com escurecimento por cima.
-- Revisão completa (acessibilidade, desempenho, segurança, stack e pendências): `REVIEW.md`.
-- Botão "Pausar animações" no header: guarda a preferência do visitante. Se você mudar o script inline do `<head>`, recalcule o hash na CSP (meta `Content-Security-Policy`).
+- Foto de fundo: coloque uma imagem em `assets/img/fundo.jpg`. Ela aparece sozinha no fundo da página inicial, com um escurecimento por cima.
 - Pré-visualização local: use um servidor (`python -m http.server`) e não abra o arquivo com duplo clique, porque o WebGL não carrega texturas via `file://`. No GitHub Pages funciona normalmente.
