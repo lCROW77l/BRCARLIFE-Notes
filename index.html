@@ -4,10 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>BR CAR LIFE | Arrancada 2D com física de simulação</title>
-<meta name="description" content="BR CAR LIFE é um jogo de arrancada 2D com física hiper-realista de pneus, rodas e freios, feito pela CROW77 Developments.">
+<meta name="description" content="BR CAR LIFE é um jogo de arrancada 2D com física hiper-realista, feito pela CROW77 Developments.">
 <meta name="theme-color" content="#121826">
-<meta property="og:title" content="BR CAR LIFE">
-<meta property="og:description" content="Arrancada 2D com física de simulação. Acompanhe o desenvolvimento.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2714%27 fill=%27%23121826%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%276%27 fill=%27%23ffc21a%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,114 +15,23 @@
 <body>
 <a class="skip" href="#main">Pular para o conteúdo</a>
 <div id="prog" aria-hidden="true"></div>
-<div class="w">
-<header class="hd">
-<a class="logo" href="#topo" aria-label="CROW77 Developments, início">CROW77</a>
-<nav aria-label="Principal"><ul>
-<li><a href="#features">Features</a></li><li><a href="#garagem">Garagem</a></li><li><a href="#devlog">Desenvolvimento</a></li><li><a href="#radio">Rádios</a></li><li><a href="#estudio">Estúdio</a></li>
-</ul></nav>
-</header>
-</div>
-<main id="main">
-<div class="w" id="topo">
-<div class="hero">
-<div>
+<div class="w"><header class="hd">
+<a class="logo" href="index.html" aria-label="CROW77 Developments, início">CROW77</a>
+<nav aria-label="Principal"><ul><li><a href="index.html" aria-current="page">Início</a></li><li><a href="rodas.html">Rodas</a></li><li><a href="suspensao.html">Suspensão</a></li><li><a href="radio.html">Rádios</a></li><li><a href="devlog.html">Desenvolvimento</a></li></ul></nav>
+</header></div>
+<main id="main"><div class="w">
+<div class="home">
 <h1 class="plate"><span class="band" aria-hidden="true">BRASIL</span><span class="num">BR CAR LIFE</span></h1>
-<p class="lead">Arrancada 2D com a física de uma simulação. Cada pneu enruga, cada disco esquenta, cada parafuso importa.</p>
-<div class="acts"><a class="btn" href="#garagem">Montar uma roda</a><a class="btn alt" href="#devlog">Ver o desenvolvimento</a></div>
+<p class="lead">Arrancada 2D com a física de uma simulação, feita pela CROW77 Developments.</p>
+<ul class="idx">
+<li><a class="row" href="rodas.html"><span class="rt">Física de rodas</span><span class="rd">Pneus, aros, freios e partículas funcionando como um conjunto só.</span><span class="rs on">Em desenvolvimento</span></a></li>
+<li><a class="row" href="suspensao.html"><span class="rt">Física da suspensão</span><span class="rd">Como o carro transfere peso e se comporta na largada.</span><span class="rs">Futuro</span></a></li>
+<li><a class="row" href="radio.html"><span class="rt">Rádios</span><span class="rd">Estações dentro do jogo para acompanhar cada arrancada.</span><span class="rs">Futuro</span></a></li>
+<li><a class="row" href="devlog.html"><span class="rt">Desenvolvimento</span><span class="rd">A linha do tempo do que já foi feito e do que vem a seguir.</span><span class="rs on">Atualizado</span></a></li>
+</ul>
 </div>
-<div class="strip">
-<ul class="lights" aria-hidden="true"><li></li><li></li><li></li><li class="g"></li></ul>
-<canvas id="cv" width="800" height="360" role="img" aria-label="Animação de um pneu em burnout soltando fumaça, ativada pelo botão Largar"></canvas>
-<div class="row"><button class="btn" id="go" type="button">Largar</button><p id="st" role="status">Pronto para o pré-estágio.</p></div>
-</div>
-</div>
-</div>
-
-<div class="road" aria-hidden="true"></div>
-<section id="features"><div class="w">
-<h2>O que está sendo construído</h2>
-<p>O jogo é 2D, mas a mecânica não é simplificada. Estas são as peças que já definem o BR CAR LIFE.</p>
-<div class="fl">
-<div><h3>Pneus com pressão real</h3><p>A pressão muda o <i>Contact Patch</i> (a área de borracha no chão) e deforma texto e textura da lateral.</p></div>
-<div><h3>Rugas e crescimento</h3><p>Em arrancadas de alto torque a lateral enruga (<i>Wrinkling</i>). Em alta velocidade o pneu cresce por força centrífuga e perde aderência.</p></div>
-<div><h3>Beadlocks e patinação</h3><p>Sem <i>beadlocks</i>, torque demais faz o pneu girar em falso sobre o aro (<i>Tire Slippage</i>). Instalar é obrigatório e é uma etapa na garagem.</p></div>
-<div><h3>Aros 13 a 24</h3><p>Cinco partes pintáveis: pinça, lip, barril, face e parafusos. Regras de encaixe impedem combinações impossíveis.</p></div>
-<div><h3>Freios que brilham</h3><p>Disco e pinça esquentam e ficam incandescentes depois de frenagens pesadas, e o freio perde eficiência (<i>Brake Fade</i>).</p></div>
-<div><h3>Terreno e partículas</h3><p>Poeira, lama e fumaça nascem de cada componente da roda, conforme a aderência e o piso.</p></div>
-<div><h3>Rádios <span class="tag">Em breve</span></h3><p>Estações dentro do jogo, para acompanhar cada arrancada. Veja a seção Rádios.</p></div>
-</div>
-</div></section>
-
-<div class="road" aria-hidden="true"></div>
-<section id="garagem"><div class="w">
-<h2>Garagem interativa</h2>
-<p>Uma amostra do sistema de rodas rodando aqui na página. Mexa nos controles e veja pressão, torque e calor mudarem a roda.</p>
-<div class="gar">
-<svg viewBox="0 0 400 250" role="img" aria-label="Roda em vista lateral que reage aos controles ao lado">
-<line x1="10" y1="215" x2="390" y2="215" stroke="var(--mu)" stroke-width="2"/>
-<path id="tr" fill="#0b0d11"/>
-<path id="wr" fill="none" stroke="var(--am)" stroke-width="2"/>
-<g id="rg" style="--rc:#c8d0da">
-<circle id="dk" r="40" style="fill:#6b7580"/>
-<path d="M13.7-37.6A40 40 0 0 1 37.6-13.7" fill="none" stroke="#e0401c" stroke-width="14"/>
-<path d="M0 0V-38M0 0L36-11.7M0 0L22.3 30.7M0 0L-22.3 30.7M0 0L-36-11.7" style="stroke:var(--rc)" stroke-width="8" stroke-linecap="round"/>
-<circle r="44" fill="none" style="stroke:var(--rc)" stroke-width="6"/>
-<circle r="11" style="fill:var(--rc)"/>
-</g>
-<line id="pt" y1="218" y2="218" stroke="#e0401c" stroke-width="5" stroke-linecap="round"/>
-</svg>
-<div class="ctl">
-<label for="p">Pressão do pneu <b id="pv"></b></label><input id="p" type="range" min="6" max="36" value="14">
-<label for="t">Torque na roda <b id="tv"></b></label><input id="t" type="range" min="0" max="100" value="60">
-<label for="h">Calor do freio <b id="hv"></b></label><input id="h" type="range" min="0" max="100" value="0">
-<fieldset><legend>Cor da face do aro</legend><div class="sw">
-<label><input type="radio" name="rc" value="#c8d0da" checked><span class="c" style="background:#c8d0da"></span><span class="sr">Polido</span></label>
-<label><input type="radio" name="rc" value="#ffc21a"><span class="c" style="background:#ffc21a"></span><span class="sr">Amarelo</span></label>
-<label><input type="radio" name="rc" value="#e5484d"><span class="c" style="background:#e5484d"></span><span class="sr">Vermelho</span></label>
-<label><input type="radio" name="rc" value="#3b82f6"><span class="c" style="background:#3b82f6"></span><span class="sr">Azul</span></label>
-<label><input type="radio" name="rc" value="#2dd4bf"><span class="c" style="background:#2dd4bf"></span><span class="sr">Verde-água</span></label>
-</div></fieldset>
-<div class="out"><p>Estado do pneu: <b id="o0"></b></p><p>Contact patch: <b id="o1"></b></p><p>Rugas na lateral: <b id="o2"></b></p></div>
-</div>
-</div>
-<p style="margin-top:14px;color:var(--mu);font-size:1rem">Modelo simplificado e valores ilustrativos. A versão do jogo usa uma malha de 64 a 128 segmentos por pneu.</p>
-</div></section>
-
-<div class="road" aria-hidden="true"></div>
-<section id="devlog"><div class="w">
-<h2>Processo de desenvolvimento</h2>
-<p>O jogo está em Pre-Alpha. Esta lista mostra onde estamos e o que vem a seguir.</p>
-<ol class="tl">
-<li class="ok"><span class="s">Feito</span><h3>Modelo de pneu e pressão</h3><p>Malha radial 2D com pressão, deformação e contact patch.</p></li>
-<li class="ok"><span class="s">Feito</span><h3>Regras de encaixe pneu e aro</h3><p>Diâmetro exato, janela de largura e aviso visual de compatibilidade.</p></li>
-<li class="now"><span class="s">Em andamento</span><h3>Wrinkling e crescimento centrífugo</h3><p>Rugas por torque e expansão do pneu em alta velocidade.</p></li>
-<li><span class="s">Próximo</span><h3>Beadlocks e tire slippage</h3><p>Fixação do pneu no aro e patinação sob torque massivo.</p></li>
-<li><span class="s">Próximo</span><h3>Aros multi-partes</h3><p>Pintura individual de pinça, lip, barril, face e parafusos.</p></li>
-<li><span class="s">Próximo</span><h3>Freios incandescentes</h3><p>Termodinâmica do disco, brilho e brake fade.</p></li>
-<li><span class="s">Próximo</span><h3>Partículas por terreno</h3><p>Poeira, lama e fumaça vindas de cada peça da roda.</p></li>
-<li><span class="s">Depois</span><h3>Rádios</h3><p>Estações dentro do jogo.</p></li>
-</ol>
-</div></section>
-
-<section id="radio" style="padding-top:0"><div class="w"><div class="radio">
-<div><h2>Rádios, em breve</h2><p>Estamos reservando espaço no jogo para estações de rádio. Os detalhes saem em um próximo devlog.</p></div>
-<div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-</div></div></section>
-
-<div class="road" aria-hidden="true"></div>
-<section id="estudio"><div class="w">
-<h2>CROW77 Developments</h2>
-<p>Estúdio independente e, por enquanto, de uma pessoa só. Cada decisão de design e cada linha de código passa pela mesma mesa.</p>
-<p>Quer acompanhar de perto ou dar palpite sobre compostos de pneu, acabamentos de aro e telemetria? Entre na comunidade.</p>
-<div class="acts">
-<a class="btn" href="https://discord.gg/SEU-CONVITE">Discord</a>
-<a class="btn alt" href="https://store.steampowered.com/">Steam</a>
-<a class="btn alt" href="https://github.com/">GitHub</a>
-</div>
-</div></section>
-</main>
-<footer><div class="w"><p>© 2026 CROW77 Developments. BR CAR LIFE está em desenvolvimento e os valores apresentados são ilustrativos.</p></div></footer>
+</div></main>
+<footer><div class="w"><p>© 2026 CROW77 Developments. BR CAR LIFE está em desenvolvimento e os valores apresentados são ilustrativos. Fotos, vídeos e canais de comunidade serão adicionados ao longo do desenvolvimento.</p></div></footer>
 <script src="assets/main.js"></script>
 </body>
 </html>

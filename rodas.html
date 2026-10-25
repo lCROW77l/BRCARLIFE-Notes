@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Física de rodas | BR CAR LIFE</title>
+<meta name="description" content="Pneus, aros, freios e partículas do BR CAR LIFE: como funciona a física de rodas.">
+<meta name="theme-color" content="#121826">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2714%27 fill=%27%23121826%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%276%27 fill=%27%23ffc21a%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Big+Shoulders+Display:wght@700;900&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<div id="prog" aria-hidden="true"></div>
+<div class="w"><header class="hd">
+<a class="logo" href="index.html" aria-label="CROW77 Developments, início">CROW77</a>
+<nav aria-label="Principal"><ul><li><a href="index.html">Início</a></li><li><a href="rodas.html" aria-current="page">Rodas</a></li><li><a href="suspensao.html">Suspensão</a></li><li><a href="radio.html">Rádios</a></li><li><a href="devlog.html">Desenvolvimento</a></li></ul></nav>
+</header></div>
+<main id="main"><div class="w">
+<div class="pg"><h1 class="ph1">Física de rodas</h1>
+<p class="sub">Pneus, aros, freios e partículas funcionando como um conjunto só. Status: em desenvolvimento.</p>
+<ul class="jump"><li><a href="#pneus">Pneus</a></li><li><a href="#garagem">Garagem interativa</a></li><li><a href="#aros">Aros</a></li><li><a href="#freios">Freios</a></li><li><a href="#particulas">Partículas</a></li><li><a href="#midia">Fotos e vídeos</a></li></ul></div>
+<section class="sec" aria-label="Demonstração de largada"><div class="strip">
+<ul class="lights" aria-hidden="true"><li></li><li></li><li></li><li class="g"></li></ul>
+<canvas id="cv" width="800" height="360" role="img" aria-label="Animação de um pneu em burnout soltando fumaça, ativada pelo botão Largar"></canvas>
+<div class="row"><button class="btn" id="go" type="button">Largar</button><p id="st" role="status">Pronto para o pré-estágio.</p></div>
+</div></section>
+<section class="sec" id="pneus"><h2>Pneus</h2>
+<div class="fl">
+<div><h3>Pressão e contact patch</h3><p>O <i>Contact Patch</i> é a área de borracha que realmente toca o chão. Pneu murcho tem área maior e mais tração, mas esquenta e deforma a lateral. Pneu cheio tem área menor e perde aderência. O texto da lateral deforma junto.</p></div>
+<div><h3>Rugas (wrinkling)</h3><p>Na largada o aro gira antes do pneu e a lateral vira uma mola torcida, formando ondas. Mais torque, menos pressão e composto mais macio significam rugas mais profundas.</p></div>
+<div><h3>Crescimento centrífugo</h3><p>Em alta velocidade o pneu se expande (<i>Centrifugal Growth</i>). O raio aumenta, a área de contato encolhe e a aderência cai no fim da pista.</p></div>
+<div><h3>Encaixe pneu e aro</h3><p>O diâmetro do aro precisa casar exatamente com o pneu, e a largura deve ficar dentro de uma janela aceita. Combinações impossíveis são bloqueadas com aviso visual.</p></div>
+<div><h3>Beadlocks e tire slippage</h3><p>O pneu é preso ao aro pelo atrito do talão (<i>bead</i>). Com torque demais ele gira em falso sobre o aro (<i>Tire Slippage</i>). Os <i>beadlocks</i> travam o talão e a instalação é uma etapa obrigatória na garagem.</p></div>
+<div><h3>Luz e relevo</h3><p>Mesmo em 2D, o pneu tem volume. Mapas de normais e uma luz fixa no mundo fazem o relevo girar sob a luz, sem a iluminação girar junto.</p></div>
+</div></section>
+<section class="sec" id="garagem"><h2>Garagem interativa</h2>
+<p>Uma amostra do sistema rodando aqui. Mexa nos controles e veja pressão, torque e calor mudarem a roda.</p>
+<div class="gar">
+<svg viewBox="0 0 400 250" role="img" aria-label="Roda em vista lateral que reage aos controles ao lado">
+<line x1="10" y1="215" x2="390" y2="215" stroke="var(--mu)" stroke-width="2"/>
+<path id="tr" fill="#0b0d11"/>
+<path id="wr" fill="none" stroke="var(--am)" stroke-width="2"/>
+<g id="rg" style="--rc:#c8d0da">
+<circle id="dk" r="40" style="fill:#6b7580"/>
+<path d="M13.7-37.6A40 40 0 0 1 37.6-13.7" fill="none" stroke="#e0401c" stroke-width="14"/>
+<path d="M0 0V-38M0 0L36-11.7M0 0L22.3 30.7M0 0L-22.3 30.7M0 0L-36-11.7" style="stroke:var(--rc)" stroke-width="8" stroke-linecap="round"/>
+<circle r="44" fill="none" style="stroke:var(--rc)" stroke-width="6"/>
+<circle r="11" style="fill:var(--rc)"/>
+</g>
+<line id="pt" y1="218" y2="218" stroke="#e0401c" stroke-width="5" stroke-linecap="round"/>
+</svg>
+<div class="ctl">
+<label for="p">Pressão do pneu <b id="pv"></b></label><input id="p" type="range" min="6" max="36" value="14">
+<label for="t">Torque na roda <b id="tv"></b></label><input id="t" type="range" min="0" max="100" value="60">
+<label for="h">Calor do freio <b id="hv"></b></label><input id="h" type="range" min="0" max="100" value="0">
+<fieldset><legend>Cor da face do aro</legend><div class="sw">
+<label><input type="radio" name="rc" value="#c8d0da" checked><span class="c" style="background:#c8d0da"></span><span class="sr">Polido</span></label>
+<label><input type="radio" name="rc" value="#ffc21a"><span class="c" style="background:#ffc21a"></span><span class="sr">Amarelo</span></label>
+<label><input type="radio" name="rc" value="#e5484d"><span class="c" style="background:#e5484d"></span><span class="sr">Vermelho</span></label>
+<label><input type="radio" name="rc" value="#3b82f6"><span class="c" style="background:#3b82f6"></span><span class="sr">Azul</span></label>
+<label><input type="radio" name="rc" value="#2dd4bf"><span class="c" style="background:#2dd4bf"></span><span class="sr">Verde-água</span></label>
+</div></fieldset>
+<div class="out"><p>Estado do pneu: <b id="o0"></b></p><p>Contact patch: <b id="o1"></b></p><p>Rugas na lateral: <b id="o2"></b></p></div>
+</div>
+</div>
+<p style="margin-top:14px;color:var(--mu);font-size:1rem">Modelo simplificado e valores ilustrativos.</p></section>
+<section class="sec" id="aros"><h2>Aros</h2>
+<p>Do aro 13 ao 24. Com o mesmo diâmetro total, aro maior significa parede de pneu menor, e o perfil é recalculado na hora. Cada aro tem cinco partes pintáveis, com cor e material próprios: pinça de freio (<i>caliper</i>), borda externa (<i>lip</i>), barril (<i>barrel</i>), face e parafusos. Caliper grande só cabe em aro grande, e o conjunto precisa caber no vão da roda.</p></section>
+<section class="sec" id="freios"><h2>Freios</h2>
+<p>Disco e pinça usam a mesma iluminação do resto da roda. Depois de frenagens pesadas eles esquentam e ficam incandescentes, do vermelho escuro ao amarelo-esbranquiçado. Disco superaquecido perde eficiência (<i>Brake Fade</i>), e a pinça escurece com o calor extremo.</p></section>
+<section class="sec" id="particulas"><h2>Partículas e terreno</h2>
+<p>Poeira, lama e fumaça nascem de cada parte da roda e dependem da aderência e do piso. Asfalto limpo solta fumaça de borracha, terra seca levanta nuvens de poeira, lama é lançada em arco e cascalho solta fragmentos pesados.</p></section>
+<section class="sec" id="midia"><h2>Fotos e vídeos</h2>
+<div class="ph"><p>Ainda não há mídia. Capturas de tela e vídeos desta parte entram aqui quando o sistema estiver mais completo.</p></div></section>
+</div></main>
+<footer><div class="w"><p>© 2026 CROW77 Developments. BR CAR LIFE está em desenvolvimento e os valores apresentados são ilustrativos. Fotos, vídeos e canais de comunidade serão adicionados ao longo do desenvolvimento.</p></div></footer>
+<script src="assets/main.js"></script>
+<script src="assets/rodas.js"></script>
+</body>
+</html>
