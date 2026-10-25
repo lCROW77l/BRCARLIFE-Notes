@@ -1,5 +1,5 @@
 (()=>{
-const $=(s,e=document)=>e.querySelector(s),$$=(s,e=document)=>[...e.querySelectorAll(s)],rm=matchMedia("(prefers-reduced-motion: reduce)").matches,R=document.documentElement;
+const $=(s,e=document)=>e.querySelector(s),$$=(s,e=document)=>[...e.querySelectorAll(s)],rm=matchMedia("(prefers-reduced-motion: reduce)").matches,R=document.documentElement;let calm=rm||R.classList.contains("calm");
 
 /* Saída de página: faixa verde e amarela cobre a tela antes de navegar */
 const wp=$("#wipe");
@@ -34,19 +34,19 @@ while(K.length&&K[0].l<=0)K.shift();
 }
 
 /* Gol GTI: iluminação dinâmica com normal map (WebGL) e rodas ligadas ao deslocamento */
-const car=$("#car");let step=()=>{},rev=0;
+const car=$("#car");let step=()=>{},stop=()=>{},rev=0;
 if(car){
 const whs=$$(".wh",car),rims=$$("img",car).filter(i=>i.closest(".wh")),cv=$("canvas",car),fb=$(".fb",car);
-let gl=null,U={},lx=.5,ly=.9,idle=-9e9,tx=0,rot=0,vis=true,t0=performance.now(),pt=0;
+let ptx=0,pty=0,lp=0,gl=null,U={},lx=.5,ly=.9,idle=-9e9,tx=0,rot=0,vis=true,t0=performance.now(),pt=0;
 try{gl=cv.getContext("webgl")}catch(e){}
 function paint(t){
 if(!gl||!U.P)return;gl.clear(gl.COLOR_BUFFER_BIT);gl.uniform3f(U.P,lx,ly,.55);
 const m=.5+.5*Math.sin(t/1400);gl.uniform3f(U.C,.24+.76*m,.81+.01*m,.14-.04*m);gl.drawArrays(gl.TRIANGLE_STRIP,0,4)}
-if(gl){
+if(gl)try{
 const sh=(k,s)=>{const o=gl.createShader(k);gl.shaderSource(o,s);gl.compileShader(o);return o},pr=gl.createProgram();
 gl.attachShader(pr,sh(gl.VERTEX_SHADER,"attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0,1);}"));
 gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,"precision mediump float;varying vec2 v;uniform sampler2D A,N;uniform vec3 P,C;void main(){vec4 c=texture2D(A,v);vec3 n=normalize(texture2D(N,v).rgb*2.-1.);vec3 d=vec3((P.xy-v)*vec2(3.84,1.),P.z);vec3 l=normalize(d);float f=1./(1.+.15*dot(d.xy,d.xy));float df=max(dot(n,l),0.)*f;vec3 h=normalize(l+vec3(0.,0.,1.));float sp=pow(max(dot(n,h),0.),36.)*f;float k=max(dot(n,normalize(vec3(-.4,.7,.6))),0.)*.28;vec3 col=c.rgb*(vec3(.1,.12,.14)+k+C*df*1.5)+C*sp*.9;gl_FragColor=vec4(col*c.a,c.a);}"));
-gl.linkProgram(pr);gl.useProgram(pr);
+gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))throw 0;gl.useProgram(pr);
 const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
 const q=gl.getAttribLocation(pr,"p");gl.enableVertexAttribArray(q);gl.vertexAttribPointer(q,2,gl.FLOAT,false,0,0);
 gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);gl.viewport(0,0,cv.width,cv.height);gl.clearColor(0,0,0,0);
@@ -57,11 +57,12 @@ gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im);
 ["TEXTURE_WRAP_S","TEXTURE_WRAP_T"].forEach(k=>gl.texParameteri(gl.TEXTURE_2D,gl[k],gl.CLAMP_TO_EDGE));
 if(++ok==2){U={P:gl.getUniformLocation(pr,"P"),C:gl.getUniformLocation(pr,"C")};
 gl.uniform1i(gl.getUniformLocation(pr,"A"),0);gl.uniform1i(gl.getUniformLocation(pr,"N"),1);fb.hidden=true;paint(0)}}catch(e){gl=null}};
-im.src="assets/img/"+n+".webp"})}
-addEventListener("pointermove",e=>{const r=car.getBoundingClientRect();
-lx=Math.max(-.3,Math.min(1.3,(e.clientX-r.left)/r.width));ly=Math.max(-.2,Math.min(1.4,1-(e.clientY-r.top)/r.height));idle=performance.now();if(rm)paint(0)},{passive:true});
+im.src="assets/img/"+n+".webp"})}catch(e){gl=null}
+cv.addEventListener("webglcontextlost",e=>{e.preventDefault();gl=null;fb.hidden=false});
+const aim=()=>{const r=car.getBoundingClientRect();lx=Math.max(-.3,Math.min(1.3,(ptx-r.left)/r.width));ly=Math.max(-.2,Math.min(1.4,1-(pty-r.top)/r.height))};
+addEventListener("pointermove",e=>{ptx=e.clientX;pty=e.clientY;idle=performance.now();if(calm){aim();paint(0)}},{passive:true});
 new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(car.parentElement);
-const rb=$("#rev");if(rb){if(rm)rb.hidden=true;else rb.addEventListener("click",()=>rev=1)}
+const rb=$("#rev");if(rb){if(rm)rb.hidden=true;else rb.addEventListener("click",()=>{if(!calm)rev=1})}
 const ease=x=>1-Math.pow(1-x,3);
 if(!rm)step=t=>{
 if(!vis)return;
@@ -72,8 +73,13 @@ const j=rev>.05?(Math.random()-.5)*rev*3:0;
 car.style.transform="translate("+off.toFixed(1)+"px,"+j.toFixed(1)+"px)";
 rims.forEach(i=>i.style.transform="rotate("+rot+"rad)");
 if(Math.abs(dx)>3||rev>.08){const w=whs[0].getBoundingClientRect();if(t-pt>40){pt=t;smoke(w.left+w.width*.25,w.bottom-10,1+(rev>.3?1:0),1+rev*2)}}
-if(t-idle>2500){lx=.5+.5*Math.sin(t/2200);ly=.9}
-paint(t)};
+if(t-idle<2500)aim();else{lx=.5+.5*Math.sin(t/2200);ly=.9}
+if(innerWidth>700||t-lp>33){lp=t;paint(t)}};
+stop=()=>{car.style.transform="";rims.forEach(i=>i.style.transform="");rev=0;paint(0)};
 }
-if(rm)parts(0);else{const f=t=>{parts(t);step(t);requestAnimationFrame(f)};requestAnimationFrame(f)}
+const cb=$("#calm");
+if(cb){if(rm)cb.hidden=true;const sy2=()=>{cb.setAttribute("aria-pressed",calm);cb.textContent=calm?"Animações pausadas":"Pausar animações"};sy2();
+cb.addEventListener("click",()=>{calm=!calm;R.classList.toggle("calm",calm);try{localStorage.calm=calm?"1":"0"}catch(e){}sy2();if(calm){K.length=0;stop();parts(0)}})}
+if(calm)parts(0);
+const f=t=>{if(!calm){parts(t);step(t)}requestAnimationFrame(f)};requestAnimationFrame(f)
 })();

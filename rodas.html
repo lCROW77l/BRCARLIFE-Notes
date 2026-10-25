@@ -6,10 +6,10 @@
 <title>Física de rodas | BR CAR LIFE</title>
 <meta name="description" content="Pneus, aros, freios e partículas do BR CAR LIFE.">
 <meta name="theme-color" content="#090b0a">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-0hKWat6HTzTJMsid/6AgY6BT2Hn/y1krUFve72SlqWA='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta property="og:title" content="Física de rodas | BR CAR LIFE">
-<meta property="og:image" content="assets/img/logo.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2714%27 fill=%27%23090b0a%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%276%27 fill=%27%233ccf23%27/%3E%3C/svg%3E">
-<script>document.documentElement.className+=" js"</script>
+<script>document.documentElement.className+=" js";try{if(localStorage.calm==="1")document.documentElement.className+=" calm"}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;600;700&display=swap">
@@ -17,14 +17,15 @@
 </head>
 <body>
 <canvas id="fx" aria-hidden="true"></canvas>
-<div id="wipe" aria-hidden="true"><img src="assets/img/logo.webp" alt=""></div>
+<div id="wipe" aria-hidden="true"><img src="assets/img/logo-640.webp" alt="" width="640" height="640"></div>
 <a class="skip" href="#main">Pular para o conteúdo</a>
 <div id="prog" aria-hidden="true"></div>
 <div class="w"><header class="hd">
-<a class="logo" href="index.html" aria-label="CROW77, início"><img src="assets/img/crow.webp" alt="" width="44" height="44">CROW77</a>
+<a class="logo" href="index.html" aria-label="CROW77 Projects, início"><img src="assets/img/crow-160.webp" alt="" width="44" height="44">CROW77 Projects</a>
 <nav aria-label="Principal"><ul><li><a href="index.html">Início</a></li><li><a href="rodas.html" aria-current="page">Rodas</a></li><li><a href="suspensao.html">Suspensão</a></li><li><a href="radio.html">Rádios</a></li><li><a href="devlog.html">Desenvolvimento</a></li></ul></nav>
+<button class="cm" id="calm" type="button" aria-pressed="false">Pausar animações</button>
 </header></div>
-<main id="main"><div class="w">
+<main id="main" tabindex="-1"><div class="w">
 <div class="pg ent" style="--d:200"><h1 class="ph1">Física de rodas</h1>
 <p class="sub">Pneus, aros, freios e partículas funcionando como um conjunto só. Status: em desenvolvimento.</p>
 <ul class="jump"><li><a href="#pneus">Pneus</a></li><li><a href="#garagem">Garagem interativa</a></li><li><a href="#aros">Aros</a></li><li><a href="#freios">Freios</a></li><li><a href="#particulas">Partículas</a></li><li><a href="#midia">Fotos e vídeos</a></li></ul></div>
@@ -35,11 +36,11 @@
 </div></section>
 <section data-r class="sec" id="pneus"><h2>Pneus</h2>
 <div class="fl">
-<div><h3>Pressão e contact patch</h3><p>O <i>Contact Patch</i> é a área de borracha que realmente toca o chão. Pneu murcho tem área maior e mais tração, mas esquenta e deforma a lateral. Pneu cheio tem área menor e perde aderência. O texto da lateral deforma junto.</p></div>
+<div><h3>Pressão e contact patch</h3><p>O <i lang="en">Contact Patch</i> é a área de borracha que realmente toca o chão. Pneu murcho tem área maior e mais tração, mas esquenta e deforma a lateral. Pneu cheio tem área menor e perde aderência. O texto da lateral deforma junto.</p></div>
 <div><h3>Rugas (wrinkling)</h3><p>Na largada o aro gira antes do pneu e a lateral vira uma mola torcida, formando ondas. Mais torque, menos pressão e composto mais macio significam rugas mais profundas.</p></div>
-<div><h3>Crescimento centrífugo</h3><p>Em alta velocidade o pneu se expande (<i>Centrifugal Growth</i>). O raio aumenta, a área de contato encolhe e a aderência cai no fim da pista.</p></div>
+<div><h3>Crescimento centrífugo</h3><p>Em alta velocidade o pneu se expande (<i lang="en">Centrifugal Growth</i>). O raio aumenta, a área de contato encolhe e a aderência cai no fim da pista.</p></div>
 <div><h3>Encaixe pneu e aro</h3><p>O diâmetro do aro precisa casar exatamente com o pneu, e a largura deve ficar dentro de uma janela aceita. Combinações impossíveis são bloqueadas com aviso visual.</p></div>
-<div><h3>Beadlocks e tire slippage</h3><p>O pneu é preso ao aro pelo atrito do talão (<i>bead</i>). Com torque demais ele gira em falso sobre o aro (<i>Tire Slippage</i>). Os <i>beadlocks</i> travam o talão e a instalação é uma etapa obrigatória na garagem.</p></div>
+<div><h3>Beadlocks e tire slippage</h3><p>O pneu é preso ao aro pelo atrito do talão (<i lang="en">bead</i>). Com torque demais ele gira em falso sobre o aro (<i lang="en">Tire Slippage</i>). Os <i lang="en">beadlocks</i> travam o talão e a instalação é uma etapa obrigatória na garagem.</p></div>
 <div><h3>Luz e relevo</h3><p>Mesmo em 2D, o pneu tem volume. Mapas de normais e uma luz fixa no mundo fazem o relevo girar sob a luz, sem a iluminação girar junto.</p></div>
 </div></section>
 <section data-r class="sec" id="garagem"><h2>Garagem interativa</h2>
@@ -47,7 +48,7 @@
 <div class="gar">
 <svg viewBox="0 0 400 250" role="img" aria-label="Roda em vista lateral que reage aos controles ao lado">
 <line x1="10" y1="215" x2="390" y2="215" stroke="var(--mu)" stroke-width="2"/>
-<path id="tr" fill="#0b0d11"/>
+<path id="tr" fill="#262c2a" stroke="#7d8d86" stroke-width="3"/>
 <path id="wr" fill="none" stroke="var(--am)" stroke-width="2"/>
 <g id="rg" style="--rc:#c8d0da">
 <circle id="dk" r="40" style="fill:#6b7580"/>
@@ -74,15 +75,15 @@
 </div>
 <p style="margin-top:14px;color:var(--mu);font-size:1rem">Modelo simplificado e valores ilustrativos.</p></section>
 <section data-r class="sec" id="aros"><h2>Aros</h2>
-<p>Do aro 13 ao 24. Com o mesmo diâmetro total, aro maior significa parede de pneu menor, e o perfil é recalculado na hora. Cada aro tem cinco partes pintáveis, com cor e material próprios: pinça de freio (<i>caliper</i>), borda externa (<i>lip</i>), barril (<i>barrel</i>), face e parafusos. Caliper grande só cabe em aro grande, e o conjunto precisa caber no vão da roda.</p></section>
+<p>Do aro 13 ao 24. Com o mesmo diâmetro total, aro maior significa parede de pneu menor, e o perfil é recalculado na hora. Cada aro tem cinco partes pintáveis, com cor e material próprios: pinça de freio (<i lang="en">caliper</i>), borda externa (<i lang="en">lip</i>), barril (<i lang="en">barrel</i>), face e parafusos. Caliper grande só cabe em aro grande, e o conjunto precisa caber no vão da roda.</p></section>
 <section data-r class="sec" id="freios"><h2>Freios</h2>
-<p>Disco e pinça usam a mesma iluminação do resto da roda. Depois de frenagens pesadas eles esquentam e ficam incandescentes, do vermelho escuro ao amarelo-esbranquiçado. Disco superaquecido perde eficiência (<i>Brake Fade</i>), e a pinça escurece com o calor extremo.</p></section>
+<p>Disco e pinça usam a mesma iluminação do resto da roda. Depois de frenagens pesadas eles esquentam e ficam incandescentes, do vermelho escuro ao amarelo-esbranquiçado. Disco superaquecido perde eficiência (<i lang="en">Brake Fade</i>), e a pinça escurece com o calor extremo.</p></section>
 <section data-r class="sec" id="particulas"><h2>Partículas e terreno</h2>
 <p>Poeira, lama e fumaça nascem de cada parte da roda e dependem da aderência e do piso. Asfalto limpo solta fumaça de borracha, terra seca levanta nuvens de poeira, lama é lançada em arco e cascalho solta fragmentos pesados.</p></section>
 <section data-r class="sec" id="midia"><h2>Fotos e vídeos</h2>
 <div class="ph"><p>Ainda não há mídia. Capturas de tela e vídeos desta parte entram aqui quando o sistema estiver mais completo.</p></div></section>
 </div></main>
-<footer><div class="w ft"><img src="assets/img/crow.webp" alt="CROW77" width="84" height="84" loading="lazy"><p>© 2026 CROW77. BR CAR LIFE está em desenvolvimento e os valores apresentados são ilustrativos. Fotos, vídeos e canais de comunidade serão adicionados ao longo do desenvolvimento.</p></div></footer>
+<footer><div class="w ft"><img src="assets/img/crow-160.webp" alt="CROW77 Projects" width="84" height="84" loading="lazy"><p>© 2026 CROW77 Projects. BR CAR LIFE está em desenvolvimento e os valores apresentados são ilustrativos. Fotos, vídeos e canais de comunidade serão adicionados ao longo do desenvolvimento.</p></div></footer>
 <script src="assets/main.js"></script>
 <script src="assets/rodas.js"></script>
 </body>
