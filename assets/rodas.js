@@ -12,7 +12,7 @@ c.fillStyle="#1c2230";c.fillRect(0,G,W,H-G);
 c.strokeStyle="#ffc21a";c.lineWidth=4;c.setLineDash([46,40]);c.lineDashOffset=off;
 c.beginPath();c.moveTo(0,G+22);c.lineTo(W,G+22);c.stroke();c.setLineDash([]);
 ps.forEach(p=>{c.fillStyle="rgba(214,220,228,"+(p.l*.35).toFixed(2)+")";c.beginPath();c.arc(p.x,p.y,p.r,0,6.3);c.fill()});
-c.fillStyle="#0b0d11";ring(R,()=>R);c.fill();
+c.fillStyle="#262c2a";ring(R,()=>R);c.fill();c.strokeStyle="#7d8d86";c.lineWidth=3;c.stroke();
 c.strokeStyle="#5b6577";c.lineWidth=2;ring(0,a=>R*.78+pw*5*Math.sin(9*a+ang*.5));c.stroke();
 c.save();c.translate(X,G-R+6);c.rotate(ang);c.strokeStyle="#c8d0da";c.lineWidth=9;c.lineCap="round";
 for(let k=0;k<5;k++){c.rotate(1.2566);c.beginPath();c.moveTo(0,0);c.lineTo(0,-44);c.stroke()}
@@ -28,7 +28,7 @@ const say=t=>st.textContent=t;
 function done(){busy=false;go.removeAttribute("aria-disabled");L.forEach(l=>l.classList.remove("on"));say("Pronto para largar de novo.")}
 go.addEventListener("click",()=>{
 if(busy)return;busy=true;go.setAttribute("aria-disabled","true");L.forEach(l=>l.classList.remove("on"));
-if(rm){L.forEach(l=>l.classList.add("on"));say("Verde! Largou. A fumaça não foi animada porque você prefere menos movimento.");draw(.6);setTimeout(done,2500);return}
+if(rm||document.documentElement.classList.contains("calm")){L.forEach(l=>l.classList.add("on"));say("Verde! Largou. A fumaça não foi animada porque você prefere menos movimento.");draw(.6);setTimeout(done,2500);return}
 say("Pré-estágio. Luzes acendendo.");
 [0,1,2].forEach(i=>setTimeout(()=>L[i].classList.add("on"),500*(i+1)));
 setTimeout(()=>{L[3].classList.add("on");say("Verde! Largou.");tgt=.5;raf||(raf=requestAnimationFrame(tick))},2200);
@@ -59,7 +59,7 @@ dk.fill=col;dk.filter="drop-shadow(0 0 "+(h*12)+"px "+col+")";
 q("pv").textContent=p+" psi";q("tv").textContent=t+"%";
 q("hv").textContent="≈ "+Math.round(200+900*h)+" °C";
 q("o0").textContent=p<11?"subinflado":p<22?"na faixa ideal":"sobreinflado";
-q("o1").textContent="~"+Math.round(hw*8.2)+" mm";
+q("o1").textContent="~"+Math.round(hw*4.8)+" mm";
 q("o2").textContent=A<1?"quase nenhuma":A<3?"moderadas":"profundas";
 }
 ["p","t","h"].forEach(i=>q(i).addEventListener("input",lab));

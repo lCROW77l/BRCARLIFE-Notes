@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Rádios | BR CAR LIFE</title>
-<meta name="description" content="Estações de rádio dentro do BR CAR LIFE, em breve.">
+<title>Som e rádio | BR CAR LIFE</title>
+<meta name="description" content="Rádios de internet reais, mídia física e um sistema de som que queima de verdade no BR CAR LIFE.">
 <meta name="theme-color" content="#090b0a">
-<meta property="og:title" content="Rádios | BR CAR LIFE">
-<meta property="og:image" content="assets/img/logo.webp">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-0hKWat6HTzTJMsid/6AgY6BT2Hn/y1krUFve72SlqWA='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta property="og:title" content="Som e rádio | BR CAR LIFE">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2714%27 fill=%27%23090b0a%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%276%27 fill=%27%233ccf23%27/%3E%3C/svg%3E">
-<script>document.documentElement.className+=" js"</script>
+<script>document.documentElement.className+=" js";try{if(localStorage.calm==="1")document.documentElement.className+=" calm"}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;600;700&display=swap">
@@ -17,20 +17,26 @@
 </head>
 <body>
 <canvas id="fx" aria-hidden="true"></canvas>
-<div id="wipe" aria-hidden="true"><img src="assets/img/logo.webp" alt=""></div>
+<div id="wipe" aria-hidden="true"><img src="assets/img/logo-640.webp" alt="" width="640" height="640"></div>
 <a class="skip" href="#main">Pular para o conteúdo</a>
 <div id="prog" aria-hidden="true"></div>
 <div class="w"><header class="hd">
-<a class="logo" href="index.html" aria-label="CROW77, início"><img src="assets/img/crow.webp" alt="" width="44" height="44">CROW77</a>
-<nav aria-label="Principal"><ul><li><a href="index.html">Início</a></li><li><a href="rodas.html">Rodas</a></li><li><a href="suspensao.html">Suspensão</a></li><li><a href="radio.html" aria-current="page">Rádios</a></li><li><a href="devlog.html">Desenvolvimento</a></li></ul></nav>
+<a class="logo" href="index.html" aria-label="CROW77 Projects, início"><img src="assets/img/crow-160.webp" alt="" width="44" height="44"><span class="nm">CROW77</span><span class="pj"> Projects</span></a>
+<nav aria-label="Principal"><ul><li><a href="index.html">Início</a></li><li><a href="motor.html">Motor</a></li><li><a href="transmissao.html">Transmissão</a></li><li><a href="rodas.html">Rodas</a></li><li><a href="suspensao.html">Suspensão</a></li><li><a href="radio.html" aria-current="page">Som e rádio</a></li><li><a href="devlog.html">Desenvolvimento</a></li></ul></nav>
+<button class="cm" id="calm" type="button" aria-pressed="false">Pausar animações</button>
 </header></div>
-<main id="main"><div class="w">
-<div class="pg ent" style="--d:200"><h1 class="ph1">Rádios</h1>
-<p class="sub">Status: futuro. Os detalhes ainda não estão definidos.</p></div>
-<section data-r class="sec"><div class="radio"><div><h2>Estações dentro do jogo</h2><p>A ideia é ter rádios para acompanhar as arrancadas. Quando a feature estiver pronta, esta página mostra como ela funciona.</p></div><div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div></section>
-<section data-r class="sec"><h2>Fotos e vídeos</h2><div class="ph"><p>Ainda não há mídia. Ela entra aqui quando esta parte começar.</p></div></section>
+<main id="main" tabindex="-1"><div class="w">
+<div class="pg ent" style="--d:200"><h1 class="ph1">Som e rádio</h1>
+<p class="sub">Status: em testes. O som do carro é parte da simulação, e dá para ouvir rádio de verdade.</p>
+<ul class="jump"><li><a href="#internet">Rádio de internet</a></li><li><a href="#fontes">Fontes</a></li><li><a href="#sistema">Sistema de som</a></li><li><a href="#motorsom">Som do motor</a></li><li><a href="#midia">Fotos e vídeos</a></li></ul></div>
+<section data-r class="sec" id="internet"><div class="radio"><div><h2>Rádio de internet, ao vivo</h2><p>Sintonize emissoras reais de verdade, direto do carro. Se a conexão cair, o jogo volta sozinho para a rádio oficial. Desligou o rádio? A transmissão para de gastar internet e, quando você liga de novo, volta ao vivo.</p></div><div class="eq" aria-hidden="true"><i lang="en"></i><i lang="en"></i><i lang="en"></i><i lang="en"></i><i lang="en"></i></div></div></section>
+<section data-r class="sec" id="fontes"><h2>Três fontes de som</h2><div class="fl"><div><h3>Rádio oficial</h3><p>Faixas do próprio jogo.</p></div><div><h3>Rádio de internet</h3><p>Emissoras reais, ao vivo.</p></div><div><h3>Mídia física</h3><p>CD e DVD, gravados uma única vez, e pendrive, em que dá para adicionar e remover faixas. As músicas vêm do seu aparelho, no PC (Windows) e no Android.</p></div></div></section>
+<section data-r class="sec" id="sistema"><h2>Um sistema de som de verdade</h2><p>O som do carro é parte da simulação. Cada peça instalada muda o que você ouve: são dez tipos, de head unit, alto-falante e amplificador a bateria, alternador, cabeamento, capacitor e crossover. Há head units de várias épocas, do rádio AM/FM de fábrica ao multimídia digital.</p><div class="fl"><div><h3>Combinação importa</h3><p>Peças que não combinam geram distorção e ruído. Um paredão mal casado soa mal e ainda queima.</p></div><div><h3>Calor e queima</h3><p>Alto-falantes esquentam. O volume comprime com o calor e, com abuso, a peça queima de vez e precisa ser trocada. Tweeter sem proteção queima com grave demais.</p></div><div><h3>Energia elétrica</h3><p>Um sistema elétrico fraco sofre afundamentos de energia: o volume cai e o som fica instável.</p></div><div><h3>Ambiente</h3><p>Aberto, fechado ou em túnel, o som muda. Vidros e porta-malas abertos também.</p></div><div><h3>Grave que se sente</h3><p>Grave forte faz o carro vibrar.</p></div></div></section>
+<section data-r class="sec" id="motorsom"><h2>Som e efeitos do motor</h2><p>Em desenvolvimento.</p><div class="fl"><div><h3>Cada motor, seu som</h3><p>Sons gravados em várias faixas de rotação, sob carga, em neutro e na desaceleração. O corte de giro soa como limitador, e o escapamento tem caráter próprio.</p></div><div><h3>Efeitos no escapamento</h3><p>Chamas, estouros, fumaça, fuligem e faíscas ao raspar. Partida e estouros com som próprio ainda estão em produção.</p></div></div></section>
+<section class="sec"><p class="note">Aqui mostramos o que o jogo faz, não como ele calcula. Fórmulas, curvas e valores internos ficam fechados.</p></section>
+<section data-r class="sec" id="midia"><h2>Fotos e vídeos</h2><div class="ph"><p>Ainda não há mídia. Ela entra aqui quando esta parte estiver mais completa.</p></div></section>
 </div></main>
-<footer><div class="w ft"><img src="assets/img/crow.webp" alt="CROW77" width="84" height="84" loading="lazy"><p>© 2026 CROW77. BR CAR LIFE está em desenvolvimento e os valores apresentados são ilustrativos. Fotos, vídeos e canais de comunidade serão adicionados ao longo do desenvolvimento.</p></div></footer>
+<footer><div class="w ft"><img src="assets/img/crow-160.webp" alt="CROW77 Projects" width="84" height="84" loading="lazy"><p>© 2026 CROW77 Projects. BR CAR LIFE está em desenvolvimento e os valores apresentados são ilustrativos. Fotos, vídeos e canais de comunidade serão adicionados ao longo do desenvolvimento.</p></div></footer>
 <script src="assets/main.js"></script>
 </body>
 </html>
