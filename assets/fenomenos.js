@@ -8,7 +8,17 @@ const selected={area:'all',status:'all'};
 let expanded=false;
 function update(){
   let total=0,visible=0;
-  cards.forEach(card=>{const match=(selected.area==='all'||card.dataset.area===selected.area)&&(selected.status==='all'||card.dataset.status===selected.status);if(match)total++;const show=match&&(expanded||total<=8);card.hidden=!show;if(show)visible++});
+  const featured={motor:2,chassi:2,cabine:1,imagem:1,som:2};
+  cards.forEach(card=>{
+    const match=(selected.area==='all'||card.dataset.area===selected.area)&&(selected.status==='all'||card.dataset.status===selected.status);
+    if(match)total++;
+    const overview=selected.area==='all'&&selected.status==='all';
+    const sample=overview ? featured[card.dataset.area]>0 : total<=8;
+    if(overview&&sample)featured[card.dataset.area]--;
+    const show=match&&(expanded||sample);
+    card.hidden=!show;
+    if(show)visible++;
+  });
   count.textContent=visible===total?total+' '+(total===1?'recurso':'recursos'):visible+' de '+total+' recursos';
   empty.hidden=total!==0;
   more.hidden=expanded||total<=8;
