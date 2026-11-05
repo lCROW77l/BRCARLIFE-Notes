@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Física de rodas | BR CAR LIFE</title>
+<meta name="description" content="Pneus, aros, freios e partículas do BR CAR LIFE.">
+<meta name="theme-color" content="#090b0a">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ncoZfK2kMABqcE4vwfxjo4Q+UBxFGGEYxBKgrfbnptI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta property="og:title" content="Física de rodas | BR CAR LIFE">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2714%27 fill=%27%23090b0a%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%276%27 fill=%27%233ccf23%27/%3E%3C/svg%3E">
+<script>document.documentElement.className+=" js";try{if(localStorage.calm==="1")document.documentElement.className+=" calm"}catch(e){}try{if(sessionStorage.wipe){sessionStorage.removeItem("wipe");document.documentElement.className+=" nav"}}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div id="wipe" aria-hidden="true"><img src="assets/img/logo-640.webp" alt="" width="640" height="640" decoding="async" fetchpriority="low"></div>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<div id="prog" aria-hidden="true"></div>
+<div class="w"><header class="hd">
+<a class="logo" href="index.html" aria-label="CROW77 Projects, início"><img src="assets/img/crow-160.webp" alt="" width="44" height="44"><span class="nm">CROW77</span><span class="pj"> Projects</span></a>
+<nav aria-label="Principal"><ul><li><a href="index.html">Início</a></li><li><a href="motor.html">Motor</a></li><li><a href="transmissao.html">Transmissão</a></li><li><a href="rodas.html" aria-current="page">Rodas</a></li><li><a href="suspensao.html">Suspensão</a></li><li><a href="radio.html">Som e rádio</a></li><li><a href="fenomenos.html">Status do jogo</a></li><li><a href="devlog.html">Desenvolvimento</a></li></ul></nav>
+<button class="cm" id="calm" type="button" aria-pressed="false">Pausar animações</button>
+</header></div>
+<main id="main" tabindex="-1"><div class="w">
+<div class="pg ent" style="--d:200"><h1 class="ph1">Física de rodas</h1>
+<p class="sub">Montagem visual, famílias de pneus e verificação de encaixe. Status: em desenvolvimento.</p>
+<ul class="jump"><li><a href="#pneus">Pneus</a></li><li><a href="#garagem">Garagem interativa</a></li><li><a href="#aros">Aros</a></li><li><a href="#freios">Freios</a></li><li><a href="#particulas">Partículas</a></li><li><a href="#midia">Fotos e vídeos</a></li></ul></div>
+<section data-r class="sec" aria-label="Demonstração de largada"><div class="strip">
+<ul class="lights" aria-hidden="true"><li></li><li></li><li></li><li class="g"></li></ul>
+<canvas id="cv" width="1600" height="720" role="img" aria-label="Animação de um pneu em burnout soltando fumaça, ativada pelo botão Largar"></canvas>
+<div class="row"><button class="btn" id="go" type="button">Largar</button><p id="st" role="status">Pronto para a animação ilustrativa.</p></div>
+</div></section>
+<section data-r class="sec" id="pneus"><h2>Pneus</h2>
+<div class="fl">
+<div><h3>Pressão e contact patch</h3><p>O contato do pneu com o asfalto e a pressão fazem parte dos estudos de dinâmica. A demonstração abaixo é ilustrativa.</p></div>
+<div><h3>Rugas (wrinkling)</h3><p>A deformação da lateral do pneu está em desenvolvimento; o efeito mostrado nesta página é ilustrativo.</p></div>
+<div><h3>Crescimento centrífugo</h3><p>O crescimento do pneu em velocidade está previsto no desenvolvimento das rodas.</p></div>
+<div><h3>Encaixe pneu e aro</h3><p>O diâmetro do aro precisa casar exatamente com o pneu, e a largura deve ficar dentro de uma janela aceita. Combinações impossíveis são bloqueadas com aviso visual.</p></div>
+<div><h3>Beadlocks e tire slippage</h3><p>O pneu é preso ao aro pelo atrito do talão (<i lang="en">bead</i>). Com torque demais ele gira em falso sobre o aro (<i lang="en">Tire Slippage</i>). Os <i lang="en">beadlocks</i> estão planejados para uma etapa futura.</p></div>
+<div><h3>Luz e relevo</h3><p>Mesmo em 2D, o pneu tem volume. Mapas de normais e uma luz fixa no mundo fazem o relevo girar sob a luz, sem a iluminação girar junto.</p></div>
+</div></section>
+<section data-r class="sec" id="garagem"><h2>Garagem interativa</h2>
+<p>Uma ilustração interativa feita para o site. Os controles mostram possibilidades visuais; não reproduzem o comportamento do jogo.</p>
+<div class="gar">
+<canvas id="gc" width="800" height="500" role="img" aria-label="Roda do jogo em vista lateral (pneu Korvex Cup, aro de raios, disco e pinça) que reage aos controles ao lado">Esta demonstração precisa de JavaScript.</canvas>
+<div class="ctl">
+<label for="p">Pressão do pneu <b id="pv"></b></label><input id="p" type="range" min="6" max="36" value="14">
+<label for="t">Torque na roda <b id="tv"></b></label><input id="t" type="range" min="0" max="100" value="60">
+<label for="h">Calor do freio <b id="hv"></b></label><input id="h" type="range" min="0" max="100" value="0">
+<fieldset><legend>Cor da face do aro</legend><div class="sw">
+<label><input type="radio" name="rc" value="#e8ecf1" checked><span class="c" style="background:#c8d0da"></span><span class="sr">Polido</span></label>
+<label><input type="radio" name="rc" value="#ffc21a"><span class="c" style="background:#ffc21a"></span><span class="sr">Amarelo</span></label>
+<label><input type="radio" name="rc" value="#e5484d"><span class="c" style="background:#e5484d"></span><span class="sr">Vermelho</span></label>
+<label><input type="radio" name="rc" value="#3b82f6"><span class="c" style="background:#3b82f6"></span><span class="sr">Azul</span></label>
+<label><input type="radio" name="rc" value="#2dd4bf"><span class="c" style="background:#2dd4bf"></span><span class="sr">Verde-água</span></label>
+</div></fieldset>
+<div class="out"><p>Estado do pneu: <b id="o0"></b></p><p>Contact patch: <b id="o1"></b></p><p>Rugas na lateral: <b id="o2"></b></p></div>
+</div>
+</div>
+<p style="margin-top:14px;color:var(--mu);font-size:1rem">Demonstração visual ilustrativa; valores não correspondem ao jogo.</p></section>
+<section data-r class="sec" id="aros"><h2>Aros</h2>
+<p>Aros, pneus, discos e pinças são montados em camadas. A compatibilidade entre as peças e o espaço no arco da roda é verificada antes da montagem. A personalização visual segue em expansão.</p></section>
+<section data-r class="sec" id="freios"><h2>Freios</h2>
+<p>Disco e pinça fazem parte do conjunto visual e físico. O brilho por calor e os efeitos de frenagem ainda estão em desenvolvimento.</p></section>
+<section data-r class="sec" id="particulas"><h2>Partículas e terreno</h2>
+<p>Efeitos diferentes por terreno estão planejados. A fumaça da demonstração desta página é apenas visual.</p></section>
+<section data-r class="sec" id="midia"><h2>Fotos e vídeos</h2>
+<div class="ph"><p>Ainda não há mídia. Capturas de tela e vídeos desta parte entram aqui quando o sistema estiver mais completo.</p></div></section>
+</div></main>
+<footer><div class="w ft"><img src="assets/img/crow-160.webp" alt="CROW77 Projects" width="84" height="84" loading="lazy"><p>© 2026 CROW77 Projects. BR CAR LIFE está em desenvolvimento. As demonstrações e os visuais podem mudar até o lançamento.</p></div></footer>
+<script src="assets/main.js"></script>
+<script src="assets/rodas.js"></script>
+</body>
+</html>

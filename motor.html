@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Motor e combustíveis | BR CAR LIFE</title>
+<meta name="description" content="Conheça os sistemas de motor e combustível em desenvolvimento no BR CAR LIFE.">
+<meta name="theme-color" content="#090b0a">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ncoZfK2kMABqcE4vwfxjo4Q+UBxFGGEYxBKgrfbnptI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta property="og:title" content="Motor e combustíveis | BR CAR LIFE">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2714%27 fill=%27%23090b0a%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%276%27 fill=%27%233ccf23%27/%3E%3C/svg%3E">
+<script>document.documentElement.className+=" js";try{if(localStorage.calm==="1")document.documentElement.className+=" calm"}catch(e){}try{if(sessionStorage.wipe){sessionStorage.removeItem("wipe");document.documentElement.className+=" nav"}}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div id="wipe" aria-hidden="true"><img src="assets/img/logo-640.webp" alt="" width="640" height="640" decoding="async" fetchpriority="low"></div>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<div id="prog" aria-hidden="true"></div>
+<div class="w"><header class="hd">
+<a class="logo" href="index.html" aria-label="CROW77 Projects, início"><img src="assets/img/crow-160.webp" alt="" width="44" height="44"><span class="nm">CROW77</span><span class="pj"> Projects</span></a>
+<nav aria-label="Principal"><ul><li><a href="index.html">Início</a></li><li><a href="motor.html" aria-current="page">Motor</a></li><li><a href="transmissao.html">Transmissão</a></li><li><a href="rodas.html">Rodas</a></li><li><a href="suspensao.html">Suspensão</a></li><li><a href="radio.html">Som e rádio</a></li><li><a href="fenomenos.html">Status do jogo</a></li><li><a href="devlog.html">Desenvolvimento</a></li></ul></nav>
+<button class="cm" id="calm" type="button" aria-pressed="false">Pausar animações</button>
+</header></div>
+<main id="main" tabindex="-1"><div class="w">
+<div class="pg ent" style="--d:200"><h1 class="ph1">Motor e combustíveis</h1>
+<p class="sub">Status: em desenvolvimento. O Gol GTI 1994, com motor AP 2000 8V, é a referência atual dos testes.</p>
+<ul class="jump"><li><a href="#pecas">Peças</a></li><li><a href="#vida">Falhas</a></li><li><a href="#combustiveis">Combustíveis</a></li><li><a href="#clima">Clima</a></li><li><a href="#midia">Fotos e vídeos</a></li></ul></div>
+<section data-r class="sec" id="pecas"><h2>Peça por peça</h2><p>O catálogo reúne peças em 23 categorias: bloco, pistões, virabrequim, cabeçote, comando, admissão, alimentação, ignição, arrefecimento, lubrificação, escape e sobrealimentação. Há categorias também para motor rotativo e sistemas híbridos.</p><div class="fl"><div><h3>Motores parecidos não são iguais</h3><p>Mesma cilindrada e mesmo número de cilindros não quer dizer o mesmo motor. As peças de cada um têm características próprias, e é isso que separa um motor do outro.</p></div><div><h3>Encaixe com regras</h3><p>As peças têm pré-requisitos e restrições de combinação, como no carro de verdade.</p></div><div><h3>Materiais e fluidos reais</h3><p>O projeto reúne dados de materiais e fluidos para a montagem e a simulação de peças.</p></div></div></section>
+<section data-r class="sec" id="vida"><h2>Um motor que pode quebrar</h2><p>Motor não é um número na tela. Ele precisa estar completo, aquece e pode falhar.</p><div class="fl"><div><h3>Só funciona completo</h3><p>Sem ignição ou sem alimentação de combustível instaladas, o motor não gera força. Tirou uma peça essencial? Ele não pega.</p></div><div><h3>Partida e funcionamento irregular</h3><p>O motor de arranque gira o motor até ele pegar. A partida e a marcha lenta ainda estão sendo ajustadas no carro de referência.</p></div><div><h3>Calor e óleo</h3><p>O motor esquenta e depende de lubrificação. Superaquecer ou rodar sem óleo pode causar uma falha grave e permanente.</p></div></div></section>
+<section data-r class="sec" id="combustiveis"><h2>Combustíveis</h2><p>O catálogo de combustíveis e misturas já existe; a resposta do motor a cada combinação ainda está em desenvolvimento.</p><div class="fl"><div><h3>Do posto à pista</h3><p>O catálogo inclui gasolina, etanol, gás e diesel. A presença no catálogo não significa que cada ciclo de motor já esteja simulado.</p></div><div><h3>Combustíveis extremos</h3><p>Metanol e nitrometano também constam entre os dados de projeto.</p></div><div><h3>O tanque tem memória</h3><p>Mistura e armazenamento podem alterar a qualidade do combustível. A ligação completa desses efeitos ao funcionamento do motor ainda está em desenvolvimento.</p></div></div></section>
+<section data-r class="sec" id="clima"><h2>Clima e altitude</h2><p>Condições ambientais podem ser fornecidas aos sistemas em teste. A evolução automática do clima ainda não está implementada.</p></section>
+<section class="sec"><p class="note">Esta página apresenta recursos em diferentes estágios de desenvolvimento. O comportamento final ainda pode mudar.</p></section>
+<section data-r class="sec" id="midia"><h2>Fotos e vídeos</h2><div class="ph"><p>Ainda não há mídia. Ela entra aqui quando esta parte estiver mais completa.</p></div></section>
+</div></main>
+<footer><div class="w ft"><img src="assets/img/crow-160.webp" alt="CROW77 Projects" width="84" height="84" loading="lazy"><p>© 2026 CROW77 Projects. BR CAR LIFE está em desenvolvimento. As demonstrações e os visuais podem mudar até o lançamento.</p></div></footer>
+<script src="assets/main.js"></script>
+</body>
+</html>
