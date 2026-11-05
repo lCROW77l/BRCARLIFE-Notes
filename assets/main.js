@@ -23,6 +23,9 @@ addEventListener("scroll",()=>tk||(tk=requestAnimationFrame(sc)),{passive:true})
 const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("in",e.isIntersecting)),{threshold:.12});
 $$("[data-r]").forEach(e=>rm?e.classList.add("in"):io.observe(e));
 
+/* As páginas de leitura usam navegação e progresso sem manter efeitos de fundo ativos. */
+if(!document.body.classList.contains("home")){const background=$("#fx");if(background)background.remove();return}
+
 /* Partículas: faíscas de tinta (verde e amarelo) e fumaça */
 const fx=$("#fx"),g=fx.getContext("2d"),C=["#3ccf23","#ffd21a","#f1f5ee"],S=[],K=[];let W,H,mx=0,lsy=sy;
 function fit(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;fx.width=W*d;fx.height=H*d;g.setTransform(d,0,0,d,0,0)}

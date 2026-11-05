@@ -7,6 +7,7 @@ BR CAR LIFE é um jogo de arrancada 2D em desenvolvimento pela **CROW77 Projects
 ## Acompanhe o projeto
 
 - [Site oficial](https://lcrow77l.github.io/BRCARLIFE-Notes/)
+- [O jogo](https://lcrow77l.github.io/BRCARLIFE-Notes/jogo.html): motor, transmissão, rodas, dinâmica, cabine e áudio em páginas separadas.
 - [Status dos recursos](https://lcrow77l.github.io/BRCARLIFE-Notes/fenomenos.html): o que já existe no projeto, o que está em desenvolvimento e o que está previsto.
 - [Diário de desenvolvimento](https://lcrow77l.github.io/BRCARLIFE-Notes/devlog.html): marcos e direções de trabalho, sem datas de lançamento prometidas.
 - [Canal no YouTube](https://www.youtube.com/channel/UCXaQCiopvvrpPMqWYJalVgg)
@@ -15,7 +16,7 @@ O jogo está em **pré-alfa**. Um recurso presente no código pode depender de c
 
 ## Estrutura
 
-As páginas HTML na raiz compõem o site. A pasta `assets/` contém estilos, interações próprias do site e imagens usadas na apresentação. O conteúdo público foi escrito para comunicar resultados e estágio de desenvolvimento, sem publicar fórmulas, parâmetros de calibração ou código interno do jogo.
+As páginas HTML na raiz compõem o site. `jogo.html` organiza as áreas do projeto; `cabine.html` apresenta os painéis dos veículos, incluindo o painel universal previsto; `camera.html` trata dos efeitos visuais de condução. A pasta `assets/` contém estilos, interações próprias do site e imagens usadas na apresentação. O conteúdo público foi escrito para comunicar resultados e estágio de desenvolvimento, sem publicar fórmulas, parâmetros de calibração ou código interno do jogo.
 
 ## Direitos e uso
 
