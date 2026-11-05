@@ -7,9 +7,9 @@ const api={cv,ok:!!gl,ready:()=>ready,on(f){ready?f():cbs.push(f)}};
 window.Wheel=api;if(!gl)return;
 const VS="attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0,1);}";
 const FS=`precision mediump float;varying vec2 v;uniform sampler2D A,N,M;
-uniform float tile,rot,zoom,dim,heat,lit;uniform vec2 off;uniform vec3 P,C,tint,hc;
+uniform float tile,rot,zoom,dim,heat,lit;uniform vec2 off,pan;uniform vec3 P,C,tint,hc;
 void main(){
- vec2 s=(v-.5)*zoom-off;float c=cos(rot),sn=sin(rot);
+ vec2 s=(v-.5)*zoom+pan-off;float c=cos(rot),sn=sin(rot);
  vec2 t=vec2(c*s.x-sn*s.y,sn*s.x+c*s.y)+.5;
  if(t.x<0.||t.x>1.||t.y<0.||t.y>1.)discard;
  vec2 u=vec2((tile+t.x)/${TILES}.,t.y);
@@ -32,21 +32,21 @@ if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){api.ok=false;return}
 gl.useProgram(pr);
 const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
 const q=gl.getAttribLocation(pr,"p");gl.enableVertexAttribArray(q);gl.vertexAttribPointer(q,2,gl.FLOAT,false,0,0);
-["tile","rot","zoom","dim","heat","lit","off","P","C","tint","hc"].forEach(k=>U[k]=gl.getUniformLocation(pr,k));
+["tile","rot","zoom","dim","heat","lit","off","pan","P","C","tint","hc"].forEach(k=>U[k]=gl.getUniformLocation(pr,k));
 gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.clearColor(0,0,0,0);
 let n=0;["roda","roda-n","roda-m"].forEach((f,i)=>{const im=new Image();im.onload=()=>{
  const t=gl.createTexture();gl.activeTexture(gl.TEXTURE0+i);gl.bindTexture(gl.TEXTURE_2D,t);
  gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im);
  [gl.TEXTURE_MIN_FILTER,gl.TEXTURE_MAG_FILTER].forEach(k=>gl.texParameteri(gl.TEXTURE_2D,k,gl.LINEAR));
  [gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T].forEach(k=>gl.texParameteri(gl.TEXTURE_2D,k,gl.CLAMP_TO_EDGE));
- gl.uniform1i(gl.getUniformLocation(pr,"AMN"[i]),i);
+ gl.uniform1i(gl.getUniformLocation(pr,"ANM"[i]),i);
  if(++n==3){ready=true;cbs.splice(0).forEach(f=>f())}};im.src="assets/img/"+f+".webp"});
 /* o={size,zoom,rot,tire:{rot,dy},light:[x,y,z]|null,color:[r,g,b],tint,heat,heatColor,dim,rim:{dy}}
    dy em fração do diâmetro (positivo = para baixo). Devolve o canvas WebGL (copie com drawImage já). */
 api.draw=o=>{
  if(!ready)return null;const S=o.size|0;if(cv.width!==S){cv.width=cv.height=S}gl.viewport(0,0,S,S);gl.clear(gl.COLOR_BUFFER_BIT);
  const L=o.light,r=o.rot||0,z=o.zoom||1;
- gl.uniform1f(U.zoom,z);gl.uniform1f(U.dim,o.dim||0);gl.uniform1f(U.heat,o.heat||0);
+ gl.uniform1f(U.zoom,z);const pn=o.pan||[0,0];gl.uniform2f(U.pan,pn[0],pn[1]);gl.uniform1f(U.dim,o.dim||0);gl.uniform1f(U.heat,o.heat||0);
  gl.uniform3f(U.P,L?L[0]:.5,L?L[1]:.5,L?L[2]:.55);gl.uniform1f(U.lit,L?1:0);
  const C=o.color||[.24,.81,.14],T=o.tint||[1,1,1],H=o.heatColor||[1,.4,.1];
  gl.uniform3f(U.C,C[0],C[1],C[2]);gl.uniform3f(U.tint,T[0],T[1],T[2]);gl.uniform3f(U.hc,H[0],H[1],H[2]);

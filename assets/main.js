@@ -23,6 +23,21 @@ addEventListener("scroll",()=>tk||(tk=requestAnimationFrame(sc)),{passive:true})
 const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("in",e.isIntersecting)),{threshold:.12});
 $$("[data-r]").forEach(e=>rm?e.classList.add("in"):io.observe(e));
 
+/* Luz que segue o cursor dentro dos cards (só ajusta variáveis CSS) */
+if(!rm)document.addEventListener("pointermove",e=>{const c=e.target.closest&&e.target.closest(".fl>div,.directory-card,.home-area,.proof-card,.feature,.next-step,.gar,.close,.status-card,.res");if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px")},{passive:true});
+
+/* Roda do banner das páginas de física: mesma roda do jogo, girando devagar sob a luz do cursor */
+const WP=/(rodas|fenomenos|suspensao|transmissao)\.html$/.test(location.pathname),pi=$(".page-intro,.status-intro");
+if(WP&&pi&&window.Wheel&&Wheel.ok){
+const c=document.createElement("canvas");c.className="pi-wheel";c.setAttribute("aria-hidden","true");pi.append(c);pi.classList.add("has-wheel");
+const x=c.getContext("2d");let px=.3,py=.8,ang=0,vs=false,lt=0;
+addEventListener("pointermove",e=>{const r=c.getBoundingClientRect();px=(e.clientX-r.left)/r.width;py=1-(e.clientY-r.top)/r.height},{passive:true});
+new IntersectionObserver(e=>vs=e[0].isIntersecting).observe(pi);
+const go=t=>{if(vs&&!document.hidden&&t-lt>32){const dt=(t-lt)/1000;lt=t;if(!calm)ang+=dt*.35;const r=c.getBoundingClientRect(),S=Math.max(240,Math.min(720,Math.round(r.width*Math.min(devicePixelRatio||1,2))));
+const m=.5+.5*Math.sin(t/1400),o=Wheel.draw({size:S,rot:ang,light:[Math.max(-1,Math.min(2,px)),Math.max(-1,Math.min(2,py)),.55],color:[.24+.76*m,.82,.14-.04*m]});
+if(o){if(c.width!==S)c.width=c.height=S;x.clearRect(0,0,S,S);x.drawImage(o,0,0)}}requestAnimationFrame(go)};
+Wheel.on(()=>requestAnimationFrame(go))}
+
 /* As páginas de leitura usam navegação e progresso sem manter efeitos de fundo ativos. */
 if(!document.body.classList.contains("home")){const background=$("#fx");if(background)background.remove();return}
 

@@ -87,4 +87,12 @@ document.addEventListener("visibilitychange",kick);
 ["p","t","h"].forEach(i=>q(i).addEventListener("input",()=>{lab();kick()}));
 document.querySelectorAll("input[name=rc]").forEach(r=>r.addEventListener("change",lab));
 q("calm")&&q("calm").addEventListener("click",()=>setTimeout(()=>{lab();kick()},0));
+
+/* Detalhes: aro trocando de cor e disco esquentando, com a mesma roda (recorte por zoom) */
+const CORES=[["Polido","#e8ecf1"],["Amarelo","#ffc21a"],["Vermelho","#e5484d"],["Azul","#3b82f6"],["Verde-água","#2dd4bf"]];
+const hx=h=>h.replace("#","").match(/../g).map(v=>parseInt(v,16)/255);
+const close=[{id:"ca",zoom:.62,pan:[-.1,.1],f:(t,o)=>{const i=Math.floor(t/2200)%CORES.length;o.tint=hx(CORES[i][1]);q("can").textContent=CORES[i][0]}},
+{id:"cf",zoom:.6,pan:[.16,.1],f:(t,o)=>{const h=.5-.5*Math.cos(t/2600);o.heat=h<.03?0:Math.min(.95,.3+.65*h);o.heatColor=[1,.35+.5*h,.08+.3*h];o.dim=Math.max(0,(h-.55)/.45)*.5;q("cfn").textContent="≈ "+Math.round(200+900*h)+" °C"}}];
+close.forEach(k=>{const c=q(k.id),x=c.getContext("2d");let on=false;new IntersectionObserver(e=>on=e[0].isIntersecting).observe(c);
+const fr=t=>{if(on&&!document.hidden&&Wheel.ready()){const o={size:560,zoom:k.zoom,pan:k.pan,rot:calmOn()?0:t/9000,light:[.2,.85,.55],color:[.95,.97,1]};k.f(calmOn()?0:t,o);const g2=Wheel.draw(o);if(g2){x.clearRect(0,0,560,560);x.drawImage(g2,0,0)}}requestAnimationFrame(fr)};requestAnimationFrame(fr)});
 })();
