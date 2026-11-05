@@ -16,7 +16,7 @@ O jogo está em **pré-alfa**. Um recurso presente no código pode depender de c
 
 ## Estrutura
 
-As páginas HTML na raiz compõem o site. `jogo.html` organiza as áreas do projeto; `cabine.html` apresenta os painéis dos veículos, incluindo o painel universal previsto; `camera.html` trata dos efeitos visuais de condução. A pasta `assets/` contém estilos, interações próprias do site e imagens usadas na apresentação. O conteúdo público foi escrito para comunicar resultados e estágio de desenvolvimento, sem publicar fórmulas, parâmetros de calibração ou código interno do jogo.
+As páginas HTML na raiz compõem o site. `jogo.html` organiza as áreas do projeto; `cabine.html` apresenta os painéis dos veículos, incluindo o painel universal previsto; `camera.html` trata dos efeitos visuais de condução. As rodas usam um atlas único (`roda.webp`, `roda-n.webp`, `roda-m.webp`) desenhado por `wheel.js`; as peças originais do jogo não são publicadas. A pasta `assets/` contém estilos, interações próprias do site e imagens usadas na apresentação. O conteúdo público foi escrito para comunicar resultados e estágio de desenvolvimento, sem publicar fórmulas, parâmetros de calibração ou código interno do jogo.
 
 ## Direitos e uso
 
