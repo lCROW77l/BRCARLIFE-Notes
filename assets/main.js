@@ -30,7 +30,7 @@ if(!document.body.classList.contains("home")){const background=$("#fx");if(backg
 const fx=$("#fx"),g=fx.getContext("2d"),C=["#3ccf23","#ffd21a","#f1f5ee"],S=[],K=[];let W,H,mx=0,lsy=sy;
 function fit(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;fx.width=W*d;fx.height=H*d;g.setTransform(d,0,0,d,0,0)}
 addEventListener("resize",fit);fit();
-for(let i=0;i<(W<700?34:70);i++)S.push({x:Math.random()*W,y:Math.random()*H,r:.8+Math.random()*2.6,v:.15+Math.random()*.5,c:C[i%3],p:Math.random()*6.3});
+for(let i=0;i<(W<700?12:24);i++)S.push({x:Math.random()*W,y:Math.random()*H,r:.8+Math.random()*2.6,v:.15+Math.random()*.5,c:C[i%3],p:Math.random()*6.3});
 addEventListener("pointermove",e=>{mx=e.clientX/W-.5},{passive:true});
 const smoke=(x,y,n,p)=>{for(let i=0;i<n;i++)K.push({x,y,vx:-(1+Math.random()*3)*p,vy:-Math.random()*1.2,r:6+Math.random()*8,u:.5+Math.random()*.5,l:1})};
 function parts(t){
@@ -46,7 +46,7 @@ while(K.length&&K[0].l<=0)K.shift();
 const car=$("#car");let step=()=>{},stop=()=>{},rev=0;
 if(car){
 const whs=$$(".wh",car),spin=$$(".wa,.wc",car),cv=$("canvas",car),ASP=2010/840;
-let ptx=0,pty=0,lp=0,gl=null,U={},lx=.5,ly=.9,idle=-9e9,tx=0,rot=0,frontRot=0,vis=false,t0=0,pt=0;
+let ptx=0,pty=0,lp=0,gl=null,U={},lx=.5,ly=.9,idle=-9e9,rearRot=0,vis=false,pt=0;
 const fallback=()=>{if(!$(".fb",car)){const i=new Image();i.className="fb";i.alt="";i.width=2010;i.height=840;i.src="assets/img/gol-corpo-2010.webp";car.prepend(i)}cv.hidden=true};
 try{gl=cv.getContext("webgl")}catch(e){}
 function paint(t){
@@ -69,7 +69,7 @@ gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im);
 ["TEXTURE_MIN_FILTER","TEXTURE_MAG_FILTER"].forEach(k=>gl.texParameteri(gl.TEXTURE_2D,gl[k],gl.LINEAR));
 ["TEXTURE_WRAP_S","TEXTURE_WRAP_T"].forEach(k=>gl.texParameteri(gl.TEXTURE_2D,gl[k],gl.CLAMP_TO_EDGE));
 if(++ok==2){U={P:gl.getUniformLocation(pr,"P"),C:gl.getUniformLocation(pr,"C")};
-gl.uniform1i(gl.getUniformLocation(pr,"A"),0);gl.uniform1i(gl.getUniformLocation(pr,"N"),1);paint(0)}}catch(e){gl=null;fallback()}};
+gl.uniform1i(gl.getUniformLocation(pr,"A"),0);gl.uniform1i(gl.getUniformLocation(pr,"N"),1);paint(0);car.classList.add("lit")}}catch(e){gl=null;fallback()}};
 im.onerror=fallback;im.src="assets/img/"+n+".webp"})}catch(e){gl=null;fallback()}
 else fallback();
 cv.addEventListener("webglcontextlost",e=>{e.preventDefault();gl=null;fallback()});
@@ -77,19 +77,14 @@ const aim=()=>{const r=car.getBoundingClientRect();lx=Math.max(-.3,Math.min(1.3,
 addEventListener("pointermove",e=>{ptx=e.clientX;pty=e.clientY;idle=performance.now();if(calm){aim();paint(0)}},{passive:true});
 new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(car.parentElement);
 const rb=$("#rev");if(rb){if(rm)rb.hidden=true;else rb.addEventListener("click",()=>{if(!calm)rev=1})}
-const ease=x=>1-Math.pow(1-x,3);
-if(!calm)car.style.transform="translate(-"+(innerWidth+car.offsetWidth)+"px,0)";
 if(!rm)step=t=>{
-if(!vis)return;if(!t0)t0=t;
-const sr=car.parentElement.getBoundingClientRect(),p=Math.max(0,Math.min(1,(t-t0-600)/2600)),off=-(1-ease(p))*(innerWidth+car.offsetWidth)+Math.max(0,sy-Math.max(0,sr.bottom+sy-innerHeight))*1.1;
-const dx=off-tx;tx=off;const Rp=car.offsetWidth*.0793;
-rev*=.965;rot+=dx/Rp;frontRot+=rev*.55;
-car.style.transform="translate("+off.toFixed(1)+"px,0)";
-spin.forEach((i,n)=>i.style.transform="rotate("+(rot+(n<2?0:frontRot))+"rad)");
-if(Math.abs(dx)>3||rev>.08){const w=whs[1].getBoundingClientRect();if(t-pt>40){pt=t;smoke(w.left+w.width*.12,w.bottom-10,1+(rev>.3?1:0),1+rev*2)}}
+if(!vis)return;
+rev*=.965;rearRot+=rev*.55;
+spin.forEach((i,n)=>i.style.transform=n<2?"rotate("+rearRot+"rad)":"");
+if(rev>.08){const w=whs[0].getBoundingClientRect();if(t-pt>50){pt=t;smoke(w.left+w.width*.12,w.bottom-10,1,1+rev*2)}}
 if(t-idle<2500)aim();else{lx=.5+.5*Math.sin(t/2200);ly=.9}
 if(innerWidth>700||t-lp>33){lp=t;paint(t)}};
-stop=()=>{car.style.transform="";spin.forEach(i=>i.style.transform="");rev=0;paint(0)};
+stop=()=>{spin.forEach(i=>i.style.transform="");rev=0;paint(0)};
 }
 const cb=$("#calm");
 if(cb){if(rm)cb.hidden=true;const sy2=()=>{cb.setAttribute("aria-pressed",calm);cb.textContent=calm?"Animações pausadas":"Pausar animações"};sy2();
