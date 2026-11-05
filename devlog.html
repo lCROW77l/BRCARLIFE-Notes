@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Desenvolvimento | BR CAR LIFE</title>
-<meta name="description" content="Linha do tempo do desenvolvimento do BR CAR LIFE.">
+<meta name="description" content="Acompanhe os sistemas construídos, as integrações em teste e as próximas direções do BR CAR LIFE.">
 <meta name="theme-color" content="#090b0a">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ncoZfK2kMABqcE4vwfxjo4Q+UBxFGGEYxBKgrfbnptI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta property="og:title" content="Desenvolvimento | BR CAR LIFE">
@@ -26,31 +26,30 @@
 <button class="cm" id="calm" type="button" aria-pressed="false">Pausar animações</button>
 </header></div>
 <main id="main" tabindex="-1"><div class="w">
-<div class="pg ent" style="--d:200"><h1 class="ph1">Desenvolvimento</h1>
-<p class="sub">O jogo está em pré-alfa. Esta página reúne marcos de desenvolvimento. Para o estágio de cada fenômeno, visite o <a href="fenomenos.html">painel de status</a>.</p></div>
-<section data-r class="sec"><h2 class="sr">Etapas do desenvolvimento</h2>
+<div class="pg ent dev-intro" style="--d:200"><span class="eyebrow">Diário de desenvolvimento · atualizado em novembro de 2026</span><h1 class="ph1">Da oficina para a pista</h1>
+<p class="sub">BR CAR LIFE está em pré-alfa. Este registro mostra o que ganhou uma base no projeto, o que ainda passa por integração e as direções planejadas. A presença de código não confirma, sozinha, um recurso pronto para jogar.</p>
+<a class="btn alt" href="fenomenos.html">Ver status de cada recurso</a></div>
+<section class="sec dev-section" id="construido"><span class="eyebrow">01 / Base construída</span><h2>Já existe no projeto</h2><p class="dev-lead">Sistemas com comportamento implementado, ainda sujeitos a configuração, testes e ajustes no carro jogável.</p>
 <ol class="tl">
-<li class="ok"><span class="s">Feito</span><h3>Modelo de pneu e pressão</h3><p>Malha radial 2D com pressão, deformação e contact patch.</p></li>
-<li class="ok"><span class="s">Feito</span><h3>Regras de encaixe pneu e aro</h3><p>Diâmetro exato, janela de largura e aviso visual de compatibilidade.</p></li>
-<li class="ok"><span class="s">Feito</span><h3>Catálogo do motor</h3><p>Peças organizadas em 23 categorias.</p></li>
-<li class="ok"><span class="s">Feito</span><h3>Combustíveis e misturas</h3><p>Os dados de diferentes combustíveis estão organizados. A resposta completa do motor segue em desenvolvimento.</p></li>
-<li class="ok"><span class="s">Feito</span><h3>Base da transmissão</h3><p>O Gol tem dados de câmbio manual; o sistema também contempla outras configurações.</p></li>
-<li class="now"><span class="s">Em testes</span><h3>Som automotivo e rádios</h3><p>Som do motor e conexão com rádio de internet em integração.</p></li>
-<li class="now"><span class="s">Em testes</span><h3>Câmera de arrancada</h3><p>Enquadramento, vento e sensação de velocidade em ajuste no jogo.</p></li>
-<li class="now"><span class="s">Em andamento</span><h3>Motor AP 2000 8V: ajuste fino</h3><p>Aproximar o desempenho do motor de carros de verdade.</p></li>
-<li class="now"><span class="s">Em andamento</span><h3>Som e efeitos do motor</h3><p>Sons por rotação e carga, caráter do escapamento, chamas e estouros.</p></li>
-<li class="now"><span class="s">Em andamento</span><h3>Wrinkling e crescimento centrífugo</h3><p>Rugas por torque e expansão do pneu em alta velocidade.</p></li>
-<li><span class="s">Próximo</span><h3>Beadlocks e tire slippage</h3><p>Fixação do pneu no aro e patinação sob torque massivo.</p></li>
-<li><span class="s">Próximo</span><h3>Aros multi-partes</h3><p>Pintura individual de pinça, lip, barril, face e parafusos.</p></li>
-<li><span class="s">Próximo</span><h3>Freios incandescentes</h3><p>Brilho do disco e brake fade visíveis na roda.</p></li>
-<li><span class="s">Próximo</span><h3>Partículas por terreno</h3><p>Poeira, lama e fumaça vindas de cada peça da roda.</p></li>
-<li class="now"><span class="s">Em testes</span><h3>Controles de toque e gamepad</h3><p>Entrada por teclado, toque e gamepad em validação.</p></li>
-<li><span class="s">Futuro</span><h3>Largada, cronometragem e fantasmas</h3><p>Corrida de verdade com tempo oficial e fantasmas.</p></li>
-<li><span class="s">Futuro</span><h3>Afinação, garagem e loja</h3><p>Comprar, instalar e ajustar peças.</p></li>
-<li><span class="s">Futuro</span><h3>Economia e ranking</h3><p>Correr, ganhar dinheiro, evoluir o carro e comparar resultados.</p></li>
-</ol>
-<p class="note">Painel do Gol e cenário noturno também estão em integração. Alguns recursos listados aqui ainda aguardam validação na Unity.</p>
-<p class="note">O BR CAR LIFE é feito por uma pessoa só, na CROW77 Projects. Uma demonstração em vídeo será adicionada após uma nova gravação.</p></section>
+<li class="ok"><span class="s">Código</span><h3>Motor em funcionamento</h3><p>Partida condicionada às peças essenciais, freio motor, corte na desaceleração e limitador de combustível.</p></li>
+<li class="ok"><span class="s">Código</span><h3>Transmissão com consequências</h3><p>Embreagem pode patinar e aquecer; engates mal casados e sobrecarga afetam os componentes.</p></li>
+<li class="ok"><span class="s">Código</span><h3>Pista, pneus e freios</h3><p>As rodas podem perder aderência; carga, pressão e temperatura influenciam o pneu. Suspensão e freios reagem ao uso.</p></li>
+<li class="ok"><span class="s">Código</span><h3>Combustível armazenado</h3><p>O tanque acompanha mudanças da mistura e do armazenamento. A ligação de todos esses efeitos ao motor ainda não está completa.</p></li>
+</ol></section>
+<section class="sec dev-section" id="bancada"><span class="eyebrow">02 / Na bancada</span><h2>Em desenvolvimento e validação</h2><p class="dev-lead">Efeitos parciais, aproximações e conexões que precisam ser conferidas no jogo.</p>
+<ol class="tl">
+<li class="now"><span class="s">Em teste</span><h3>Motor AP 2000 8V</h3><p>Calor, lubrificação, marcha lenta e dano por sobre-rotação estão em ajuste. A falha do motor é geral, sem diagnóstico de peça específica.</p></li>
+<li class="now"><span class="s">Em teste</span><h3>Rodas e escapamento na tela</h3><p>Deformação do pneu, fumaça e chamas usam sinais do carro e aproximações visuais. A integração em cena ainda precisa de validação.</p></li>
+<li class="now"><span class="s">Em teste</span><h3>Som que acompanha a condução</h3><p>O áudio recebe estados do motor e do carro. Bancos de som, escapamento e vibração visual dependem de testes.</p></li>
+<li class="now"><span class="s">Em teste</span><h3>Câmera dinâmica</h3><p>Tremor, vento e sensação de velocidade respondem à condução; a apresentação final está em integração.</p></li>
+</ol></section>
+<section class="sec dev-section" id="horizonte"><span class="eyebrow">03 / No horizonte</span><h2>Previsto, sem data anunciada</h2><p class="dev-lead">Estas são direções do plano de desenvolvimento, sem garantia de presença na próxima versão.</p>
+<ol class="tl">
+<li><span class="s">Previsto</span><h3>Combustíveis com efeitos mais completos</h3><p>Ampliar consumo e resposta do motor às propriedades das misturas.</p></li>
+<li><span class="s">Previsto</span><h3>Mais fenômenos no motor</h3><p>Detonação, sobrealimentação e outros ciclos estão no planejamento.</p></li>
+<li><span class="s">Previsto</span><h3>Rodas e efeitos mais profundos</h3><p>Desgaste da banda do pneu e ligação do anti-lag às peças e ao acerto ainda não estão completos.</p></li>
+</ol></section>
+<section class="sec dev-outro"><h2>Continue acompanhando</h2><p>O BR CAR LIFE é desenvolvido pela CROW77 Projects. Demonstrações deste site são ilustrativas; vídeos do jogo e novidades são publicados no canal oficial.</p><div class="acts"><a class="btn" href="https://www.youtube.com/channel/UCXaQCiopvvrpPMqWYJalVgg" target="_blank" rel="noopener noreferrer">Canal no YouTube</a><a class="btn alt" href="fenomenos.html">Explorar todos os recursos</a></div></section>
 </div></main>
 <footer><div class="w ft"><img src="assets/img/crow-160.webp" alt="CROW77 Projects" width="84" height="84" loading="lazy"><p>© 2026 CROW77 Projects. BR CAR LIFE está em desenvolvimento. As demonstrações e os visuais podem mudar até o lançamento.</p></div></footer>
 <script src="assets/main.js"></script>
