@@ -47,7 +47,7 @@ const car=$("#car");let step=()=>{},stop=()=>{},rev=0;
 if(car){
 const whs=$$(".wh",car),spin=$$(".wa,.wc",car),cv=$("canvas",car),ASP=2010/840;
 let ptx=0,pty=0,lp=0,gl=null,U={},lx=.5,ly=.9,idle=-9e9,rearRot=0,vis=false,pt=0;
-const fallback=()=>{if(!$(".fb",car)){const i=new Image();i.className="fb";i.alt="";i.width=2010;i.height=840;i.src="assets/img/gol-corpo-2010.webp";car.prepend(i)}cv.hidden=true};
+const fallback=()=>{if(!$(".car-poster,.fb",car)){const i=new Image();i.className="fb";i.alt="";i.width=2010;i.height=840;i.src="assets/img/gol-corpo-2010.webp";car.prepend(i)}cv.hidden=true;cv.style.display="none"};
 try{gl=cv.getContext("webgl")}catch(e){}
 function paint(t){
 if(!gl||!U.P)return;gl.clear(gl.COLOR_BUFFER_BIT);gl.uniform3f(U.P,lx,ly,.55);
