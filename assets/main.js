@@ -61,7 +61,7 @@ while(K.length&&K[0].l<=0)K.shift();
 const car=$("#car");let step=()=>{},stop=()=>{},rev=0;
 if(car){
 const whs=$$(".wh",car),wcs=$$(".wc",car),cv=$("canvas",car),ASP=2010/840;
-let ptx=0,pty=0,lp=0,gl=null,U={},lx=.5,ly=.9,idle=-9e9,rearRot=0,vis=false,pt=0;
+let frontRot=0,ptx=0,pty=0,lp=0,gl=null,U={},lx=.5,ly=.9,idle=-9e9,rearRot=0,vis=false,pt=0;
 const fallback=()=>{if(!$(".car-poster,.fb",car)){const i=new Image();i.className="fb";i.alt="";i.width=2010;i.height=840;i.src="assets/img/gol-corpo-2010.webp";car.prepend(i)}cv.hidden=true;cv.style.display="none"};
 try{gl=cv.getContext("webgl")}catch(e){}
 function paint(t){
@@ -91,19 +91,29 @@ cv.addEventListener("webglcontextlost",e=>{e.preventDefault();gl=null;fallback()
 const wpaint=t=>{if(!Wheel.ready())return;const cr=car.getBoundingClientRect(),m=.5+.5*Math.sin(t/1400),col=[.24+.76*m,.81+.01*m,.14-.04*m],k=Math.min(devicePixelRatio||1,2);
 wcs.forEach((c,i)=>{const r=c.getBoundingClientRect();if(!r.width)return;const S=Math.max(160,Math.min(480,Math.round(r.width*k)));
 const L=[(cr.left+lx*cr.width-r.left)/r.width,1-(cr.top+(1-ly)*cr.height-r.top)/r.height,.55].map((v,j)=>j<2?Math.max(-2,Math.min(3,v)):v);
-const o=Wheel.draw({size:S,rot:i?0:rearRot,light:L,color:col});if(!o)return;if(c.width!==S){c.width=c.height=S}const x=c.getContext("2d");x.clearRect(0,0,S,S);x.drawImage(o,0,0)})};
+const o=Wheel.draw({size:S,rot:i?frontRot:rearRot,light:L,color:col});if(!o)return;if(c.width!==S){c.width=c.height=S}const x=c.getContext("2d");x.clearRect(0,0,S,S);x.drawImage(o,0,0)})};
 Wheel.on(()=>wpaint(0));
 const aim=()=>{const r=car.getBoundingClientRect();lx=Math.max(-.3,Math.min(1.3,(ptx-r.left)/r.width));ly=Math.max(-.2,Math.min(1.4,1-(pty-r.top)/r.height))};
 addEventListener("pointermove",e=>{ptx=e.clientX;pty=e.clientY;idle=performance.now();if(calm){aim();paint(0);wpaint(0)}},{passive:true});
 new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(car.parentElement);
 const rb=$("#rev");if(rb){if(rm)rb.hidden=true;else rb.addEventListener("click",()=>{if(!calm)rev=1})}
+/* Tração dianteira: a roda da frente patina forte e solta fumaça; a traseira só gira de leve */
+const stage=car.parentElement,sk=document.createElement("canvas"),sg=sk.getContext("2d"),PF=[];let lt2=0;sk.className="smk";sk.setAttribute("aria-hidden","true");stage.append(sk);
+const puff=(x,y,p)=>{PF.push({x,y,vx:-(1.4+Math.random()*2.8)*p,vy:-(.3+Math.random()*1.1),r:7+Math.random()*9,g:.9+Math.random()*.9,l:1,d:.012+Math.random()*.01})};
+const smk=(t,dt)=>{const r=sk.getBoundingClientRect(),k=Math.min(devicePixelRatio||1,1.5),w=Math.round(r.width*k),h=Math.round(r.height*k);if(sk.width!==w||sk.height!==h){sk.width=w;sk.height=h}
+ if(rev>.08){const f=whs[1].getBoundingClientRect(),sc=f.width/160;for(let i=0;i<(rev>.5?3:2);i++)puff(f.left+f.width*(.42+Math.random()*.16)-r.left,f.bottom-r.top-f.width*.03,(.6+rev)*sc)}
+ sg.setTransform(k,0,0,k,0,0);sg.clearRect(0,0,r.width,r.height);
+ for(let i=PF.length-1;i>=0;i--){const p=PF[i];p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=Math.pow(.985,dt);p.vy-=.012*dt;p.r+=p.g*dt*(.8+p.l);p.l-=p.d*dt;if(p.l<=0){PF.splice(i,1);continue}
+  const a=Math.min(1,p.l*1.3)*.36,g=sg.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);g.addColorStop(0,"rgba(236,238,232,"+a+")");g.addColorStop(.55,"rgba(200,204,198,"+a*.55+")");g.addColorStop(1,"rgba(190,195,188,0)");sg.fillStyle=g;sg.beginPath();sg.arc(p.x,p.y,p.r,0,6.2832);sg.fill()}};
 if(!rm)step=t=>{
 if(!vis)return;
-rev*=.965;rearRot+=rev*.55;
-if(rev>.08){const w=whs[0].getBoundingClientRect();if(t-pt>50){pt=t;smoke(w.left+w.width*.12,w.bottom-10,1,1+rev*2)}}
+const dt=Math.min(3,lt2?(t-lt2)/16.7:1);lt2=t;
+rev*=Math.pow(.984,dt);frontRot+=rev*.62*dt;rearRot+=rev*.14*dt;
+stage.style.transform=rev>.06?"translate(0,"+((Math.random()-.5)*2.2*rev).toFixed(2)+"px)":"";
+smk(t,dt);
 if(t-idle<2500)aim();else{lx=.5+.5*Math.sin(t/2200);ly=.9}
 if(innerWidth>700||t-lp>33){lp=t;paint(t);wpaint(t)}};
-stop=()=>{rearRot=0;rev=0;paint(0);wpaint(0)};
+stop=()=>{rearRot=0;frontRot=0;rev=0;PF.length=0;stage.style.transform="";sg.clearRect(0,0,sk.width,sk.height);paint(0);wpaint(0)};
 }
 $$(".wc-card").forEach(c=>{const x=c.getContext("2d"),dr=(L,t)=>{const o=Wheel.draw({size:320,rot:.3,light:L,color:[.24+.76*(.5+.5*Math.sin(t/1400)),.82,.12]});if(o){x.clearRect(0,0,320,320);x.drawImage(o,0,0)}};
 Wheel.on(()=>dr(null,0));const a=c.closest("a");if(a&&!rm)a.addEventListener("pointermove",e=>{if(calm)return;const r=c.getBoundingClientRect();dr([(e.clientX-r.left)/r.width,1-(e.clientY-r.top)/r.height,.55],performance.now())},{passive:true})});
