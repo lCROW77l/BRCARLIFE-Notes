@@ -647,3 +647,7 @@ main>.w>section.sec.next-step{padding:clamp(26px,5vw,48px);margin-top:56px}
 }
 @media(max-width:700px){.hero-showcase .hero-track .stage{width:100%;margin-inline:0}}
 @media(max-width:650px){.directory-card>img{display:none!important}.page-intro .ph1,.status-intro .ph1{max-width:none;font-size:clamp(1.9rem,8.2vw,3rem)}}
+
+.gauge-tach{position:absolute;left:50%;translate:-50% 0;bottom:52px;width:min(74%,260px);height:auto;aspect-ratio:580/584;filter:drop-shadow(0 14px 18px #000b);pointer-events:none}
+.gauge-tach{width:min(62%,220px);bottom:56px}
+.note-s{margin:10px 0 0;font-size:.86rem;color:#9fb094}.reads{grid-template-columns:repeat(3,minmax(0,1fr))}.reads dd{font-variant-numeric:tabular-nums}.gearbtns button{min-width:48px;padding:0 14px}
